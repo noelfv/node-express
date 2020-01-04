@@ -1,54 +1,54 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const dishRouter =express.Router();
+const promoRouter =express.Router();
 
-dishRouter.use(bodyParser.json());
+promoRouter.use(bodyParser.json());
 
-dishRouter.route('/')
+promoRouter.route('/')
 .all((req, res, next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     next();
   })
 .get((req, res, next) => {
-    res.end('Enviandote todos los pedidos');
+    res.end('Enviandote todos los pomociones');
 })
 .post((req, res, next) => {
-    res.end('Deberia agregar este pedido ' + req.body.name +
+    res.end('Deberia agregar esta promocion ' + req.body.name +
     ' con la siguiente descripcion '+ req.body.description);
 })
 .put((req, res, next) => {
     res.statusCode=403;
-    res.end('Operacion no soportada');
+    res.end('Operacion no soportada /promotions');
 })
 .delete((req, res, next) => {
-    res.end('Eliminando todos los pedidos');
+    res.end('Eliminando todas las promociones');
 });
 
 
-dishRouter.route('/:dishId')
+promoRouter.route('/:promoId')
 .all((req, res, next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     next();
   })
 .get((req, res, next) => {
-    res.end('Enviandote el pedido ' + req.params.dishId);
+    res.end('Enviandote la promocion ' + req.params.promoId);
 })
 .post((req, res, next) => {
     res.statusCode=403;
-    res.end('Operacion no soportada ' + req.params.dishId);
+    res.end('Operacion no soportada /promotions/' + req.params.promoId);
 })
 .put((req, res, next) => {
-    res.write('Actualizando el pedido ' + req.params.dishId + '\n');
-    res.end('Actualizando el pedido ' + req.body.name +
+    res.write('Actualizando la promocion ' + req.params.promoId + '\n');
+    res.end('Actualizando la promocion ' + req.body.name +
     ' con la siguiente descripcion '+ req.body.description);
 })
 .delete((req, res, next) => {
-    res.end('Eliminando el pedido ' + req.params.dishId);
+    res.end('Eliminando la promocion ' + req.params.promoId);
 });
 
 
 
-module.exports=dishRouter;
+module.exports=promoRouter;
