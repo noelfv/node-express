@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const dishRouter = require('./routes/dishRouter');
 const promoRouter = require('./routes/promoRouter');
+const leaderRouter = require('./routes/leaderRoute');
 
 
 const hostname = 'localhost';
@@ -15,27 +16,9 @@ app.use(bodyParser.json());
 
 app.use('/dishes',dishRouter);
 app.use('/promotions',promoRouter);
-/*
-app.get('/dishes/:dishId',(req, res, next) => {
-    res.end('Enviandote el pedido ' + req.params.dishId);
-});
+app.use('/leaders',leaderRouter);
 
-app.post('/dishes/:dishId',(req, res, next) => {
-    res.statusCode=403;
-    res.end('Operacion no soportada ' + req.params.dishId);
-});
-
-app.put('/dishes/:dishId',(req, res, next) => {
-    res.write('Actualizando el pedido ' + req.params.dishId + '\n');
-    res.end('Actualizando el pedido ' + req.body.name +
-    ' con la siguiente descripcion '+ req.body.description);
-});
-
-app.delete('/dishes/:dishId',(req, res, next) => {
-    res.end('Eliminando el pedido ' + req.params.dishId);
-});
-
-*/
+ 
 app.use(express.static(__dirname + '/public'));
 
 app.use((req, res, next) => {
